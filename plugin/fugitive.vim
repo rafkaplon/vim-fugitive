@@ -1953,7 +1953,7 @@ function! s:Blame(bang,line1,line2,count,args) abort
         if exists('+relativenumber')
           setlocal norelativenumber
         endif
-        execute "vertical resize ".(s:linechars('.\{-\}\ze\s\+\d\+)')+1)
+        execute "vertical resize ".(s:linechars('.\{-\}\ze [0-9:/+-][0-9:/+ -]* \d\+)')+1+v:count)
         nnoremap <buffer> <silent> <F1> :help fugitive-:Gblame<CR>
         nnoremap <buffer> <silent> g?   :help fugitive-:Gblame<CR>
         nnoremap <buffer> <silent> q    :exe substitute(bufwinnr(b:fugitive_blamed_bufnr).' wincmd w<Bar>'.bufnr('').'bdelete','^-1','','')<CR>
